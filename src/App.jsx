@@ -5,6 +5,7 @@ import CartDrawer from "./components/CartDrawer";
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
 import BonsaiDetail from "./pages/BonsaiDetail";
+import BonsaiMatch from "./pages/BonsaiMatch";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/catalogo" element={<Catalog />} />
           <Route path="/catalogo/:id" element={<BonsaiDetail />} />
+          <Route path="/match" element={<BonsaiMatch />} />
         </Routes>
       </BrowserRouter>
     </CartProvider>
