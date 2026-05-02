@@ -17,7 +17,6 @@ export default function Home() {
         <p style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.8, color: "rgba(240,232,200,0.7)", maxWidth: "520px", margin: "0 auto 2.5rem" }}>
           Donde la Naturaleza se encuentra con el Arte
         </p>
-       
         <button onClick={() => navigate("/catalogo")} style={{ background: "#c8b560", color: "#1a2e1a", fontSize: "13px", fontWeight: 500, letterSpacing: "2px", textTransform: "uppercase", padding: "14px 36px", border: "none", borderRadius: "2px", cursor: "pointer" }}>
           Ver catálogo
         </button>
@@ -29,11 +28,9 @@ export default function Home() {
         <div style={{ width: "40px", height: "1px", background: "#c8b560", margin: "0.5rem auto 1rem" }} />
         <h2 style={{ fontFamily: "Georgia, serif", fontSize: "40px", fontWeight: 400, textAlign: "center", marginBottom: "1.5rem" }}>¿Quiénes somos?</h2>
         <p style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, textAlign: "center", maxWidth: "640px", margin: "0 auto" }}>
-          Somos Espíritu Bonsái, una empresa que nace del amor por la naturaleza y el arte de los bonsáis, una práctica milenaria que consiste en cultivar árboles en miniatura, representando la belleza y esencia de la vida en su forma más simple. bonsái
-
-            Nos dedicamos no solo a ofrecer bonsáis, sino también a enseñar su cuidado y a crear una conexión especial entre las personas y estas pequeñas obras vivas. Creemos que cada bonsái es único, y que más allá de ser una planta, es una experiencia que transmite tranquilidad, paciencia y equilibrio.
-
-            En Espíritu Bonsái buscamos que cada persona descubra el valor de este arte y aprenda a cuidarlo correctamente, convirtiendo cada bonsái en un símbolo de vida, armonía y crecimiento personal.
+          Somos Espíritu Bonsái, una empresa que nace del amor por la naturaleza y el arte de los bonsáis, una práctica milenaria que consiste en cultivar árboles en miniatura, representando la belleza y esencia de la vida en su forma más simple.
+          Nos dedicamos no solo a ofrecer bonsáis, sino también a enseñar su cuidado y a crear una conexión especial entre las personas y estas pequeñas obras vivas. Creemos que cada bonsái es único, y que más allá de ser una planta, es una experiencia que transmite tranquilidad, paciencia y equilibrio.
+          En Espíritu Bonsái buscamos que cada persona descubra el valor de este arte y aprenda a cuidarlo correctamente, convirtiendo cada bonsái en un símbolo de vida, armonía y crecimiento personal.
         </p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.5rem", marginTop: "3rem" }}>
           {[
@@ -105,11 +102,136 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== 🌟 BONSAI MATCH CTA ===== */}
+      <section style={{
+        margin: "0",
+        padding: "0",
+        position: "relative",
+        overflow: "hidden",
+        background: "#070B1A",
+      }}>
+        {/* Estrellas decorativas estáticas */}
+        {[...Array(30)].map((_, i) => (
+          <div key={i} style={{
+            position: "absolute",
+            width: Math.random() * 2 + 1 + "px",
+            height: Math.random() * 2 + 1 + "px",
+            borderRadius: "50%",
+            background: `rgba(200, 180, 255, ${Math.random() * 0.6 + 0.2})`,
+            top: Math.random() * 100 + "%",
+            left: Math.random() * 100 + "%",
+            pointerEvents: "none",
+          }} />
+        ))}
+
+        {/* Nebulosas */}
+        <div style={{ position: "absolute", width: 500, height: 500, top: -150, left: -100, borderRadius: "50%", background: "radial-gradient(circle, rgba(59,31,160,0.35), transparent)", filter: "blur(60px)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", width: 400, height: 400, bottom: -100, right: -80, borderRadius: "50%", background: "radial-gradient(circle, rgba(106,63,255,0.2), transparent)", filter: "blur(60px)", pointerEvents: "none" }} />
+
+        <div style={{ position: "relative", zIndex: 1, padding: "80px 2rem", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+          {/* Icono flotante */}
+          <div style={{
+            fontSize: "64px",
+            marginBottom: "24px",
+            animation: "float 4s ease-in-out infinite",
+            display: "inline-block",
+          }}>🌳</div>
+
+          <p style={{
+            fontSize: "11px",
+            letterSpacing: "4px",
+            textTransform: "uppercase",
+            color: "#A06CFF",
+            marginBottom: "16px",
+            fontWeight: 600,
+            fontFamily: "'Raleway', sans-serif",
+          }}>✦ Espíritu Bonsái · Match Cósmico</p>
+
+          <h2 style={{
+            fontFamily: "Georgia, serif",
+            fontSize: "clamp(28px, 5vw, 48px)",
+            fontWeight: 400,
+            color: "#E8E0FF",
+            marginBottom: "16px",
+            lineHeight: 1.2,
+          }}>
+            ¿Cuál es tu<br />
+            <span style={{ background: "linear-gradient(135deg, #A06CFF, #C470FF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              árbol del alma?
+            </span>
+          </h2>
+
+          <p style={{
+            fontSize: "16px",
+            fontWeight: 300,
+            lineHeight: 1.8,
+            color: "rgba(232,224,255,0.6)",
+            maxWidth: "500px",
+            marginBottom: "12px",
+            fontFamily: "'Raleway', sans-serif",
+          }}>
+            Las estrellas y los árboles hablan el mismo idioma. En 7 preguntas descubrimos qué bonsái está alineado con tu energía cósmica.
+          </p>
+
+          {/* Badges informativos */}
+          <div style={{ display: "flex", gap: "20px", justifyContent: "center", flexWrap: "wrap", marginBottom: "40px" }}>
+            {[["✨", "7 preguntas"], ["🌌", "Match zodiacal"], ["🌳", "Top 3 bonsáis"]].map(([ico, txt]) => (
+              <div key={txt} style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                background: "rgba(160,108,255,0.12)",
+                border: "1px solid rgba(160,108,255,0.25)",
+                borderRadius: "100px",
+                padding: "8px 18px",
+                fontFamily: "'Raleway', sans-serif",
+                fontSize: "13px",
+                color: "rgba(232,224,255,0.7)",
+              }}>
+                <span>{ico}</span>
+                <span>{txt}</span>
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={() => navigate("/match")}
+            style={{
+              background: "linear-gradient(135deg, #6A3FFF, #A06CFF)",
+              color: "white",
+              border: "none",
+              borderRadius: "12px",
+              padding: "16px 48px",
+              fontSize: "16px",
+              fontWeight: 600,
+              fontFamily: "'Raleway', sans-serif",
+              cursor: "pointer",
+              letterSpacing: "0.5px",
+              boxShadow: "0 8px 32px rgba(106,63,255,0.35)",
+              transition: "all 0.2s",
+            }}
+            onMouseEnter={e => { e.target.style.transform = "translateY(-2px)"; e.target.style.boxShadow = "0 12px 40px rgba(106,63,255,0.5)"; }}
+            onMouseLeave={e => { e.target.style.transform = "translateY(0)"; e.target.style.boxShadow = "0 8px 32px rgba(106,63,255,0.35)"; }}
+          >
+            Descubrir mi bonsái ✦
+          </button>
+          <p style={{ marginTop: "14px", fontSize: "12px", color: "rgba(232,224,255,0.25)", fontFamily: "'Raleway', sans-serif" }}>
+            Gratis · Sin registro · 2 minutos
+          </p>
+        </div>
+
+        <style>{`
+          @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+          }
+        `}</style>
+      </section>
+
       {/* ===== CTA FINAL ===== */}
       <section style={{ textAlign: "center", padding: "80px 2rem", background: "#f9f7f2" }}>
         <h2 style={{ fontFamily: "Georgia, serif", fontSize: "36px", fontWeight: 400, marginBottom: "1rem", color: "#1a2e1a" }}>¿Listo para encontrar tu bonsái?</h2>
-<p style={{ fontSize: "15px", fontWeight: 300, color: "#555", marginBottom: "2rem" }}>Explora nuestra colección de árboles cultivados con dedicación y amor.</p>
-        {/* ✅ BOTÓN FUNCIONAL */}
+        <p style={{ fontSize: "15px", fontWeight: 300, color: "#555", marginBottom: "2rem" }}>Explora nuestra colección de árboles cultivados con dedicación y amor.</p>
         <button onClick={() => navigate("/catalogo")} style={{ border: "1px solid #c8b560", color: "#c8b560", background: "none", fontSize: "12px", letterSpacing: "2px", textTransform: "uppercase", padding: "13px 32px", borderRadius: "2px", cursor: "pointer" }}>
           Explorar catálogo →
         </button>
