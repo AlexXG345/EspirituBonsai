@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #070B1A;
+}
+
+.quiz-wrap {
+    min-height: 100vh;
+    width: 100%;
+    background: #070B1A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Raleway', sans-serif;
+    color: #E8E0FF;
+    position: relative;
+    overflow: hidden;
+}
+
+.nebula {
+    position: fixed;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.18;
+}
+
+.title-font {
+    font-family: 'Cinzel', serif;
+}
+
+.card-option {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(160, 130, 255, 0.2);
+    border-radius: 16px;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-option:hover {
+    background: rgba(140, 100, 255, 0.12);
+    border-color: rgba(160, 130, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.card-option.selected {
+    background: rgba(140, 100, 255, 0.22);
+    border-color: #A06CFF;
+    box-shadow: 0 0 24px rgba(140, 100, 255, 0.3);
+}
+
+.zodiac-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(160, 130, 255, 0.18);
+    border-radius: 12px;
+    padding: 12px 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.zodiac-btn:hover {
+    background: rgba(140, 100, 255, 0.15);
+    border-color: rgba(160, 130, 255, 0.5);
+    transform: scale(1.04);
+}
+
+.zodiac-btn.selected {
+    background: rgba(140, 100, 255, 0.25);
+    border-color: #A06CFF;
+    box-shadow: 0 0 16px rgba(140, 100, 255, 0.35);
+}
+
+.progress-bar {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    height: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6A3FFF, #C470FF);
+    transition: width 0.4s ease;
+    border-radius: 4px;
+}
+
+.result-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(160, 130, 255, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.result-card:hover {
+    border-color: rgba(160, 130, 255, 0.5);
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6A3FFF, #A06CFF);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 32px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(106, 63, 255, 0.4);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: rgba(232, 224, 255, 0.6);
+    border: 1px solid rgba(160, 130, 255, 0.25);
+    border-radius: 10px;
+    padding: 10px 24px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-ghost:hover {
+    border-color: rgba(160, 130, 255, 0.5);
+    color: #E8E0FF;
+}
+
+.match-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, rgba(106, 63, 255, 0.3), rgba(192, 112, 255, 0.3));
+    border: 1px solid rgba(160, 130, 255, 0.4);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #C470FF;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(-12px)
+    }
+}
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6
+    }
+
+    50% {
+        opacity: 1
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg)
+    }
+
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+.fade-up {
+    animation: fadeSlideUp 0.5s ease forwards;
+}
+
+.float-anim {
+    animation: float 3s ease-in-out infinite;
+}
+
+.analyzing-ring {
+    animation: spin 2s linear infinite;
+}
