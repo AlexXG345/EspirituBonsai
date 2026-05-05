@@ -1,11 +1,24 @@
 import { Link, useNavigate } from "react-router-dom";
-import { bonsais } from "../data/bonsais";
+import { useState, useEffect } from "react";
+import { bonsais as bonsaisLocales } from "../data/bonsais";
+import { getBonsais } from "../data/api";
 
 const difficultyLabel = { principiante: "Principiante", intermedio: "Intermedio", avanzado: "Avanzado" };
 const difficultyColor = { principiante: "#4a9e6b", intermedio: "#c8a040", avanzado: "#a04040" };
 
 export default function Catalog() {
   const navigate = useNavigate();
+  const [bonsais, setBonsais] = useState(bonsaisLocales);
+
+  useEffect(() => {
+    getBonsais()
+      .then(data => {
+        if (data && data.length > 0) setBonsais(data);
+      })
+      .catch(() => {
+        console.log("Usando datos locales");
+      });
+  }, []);
 
   return (
     <div style={{ background: "#070B1A", minHeight: "100vh", fontFamily: "Georgia, serif" }}>
