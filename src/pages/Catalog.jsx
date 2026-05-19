@@ -125,12 +125,9 @@ export default function Catalog() {
 
 function BonsaiCard({ bonsai: b, idx }) {
   return (
-    <Link
-      to={`/catalogo/${b.id}`}
+    <div 
       className="bonsai-card"
       style={{
-        textDecoration: "none",
-        color: "inherit",
         background: "rgba(255,255,255,0.04)",
         borderRadius: "16px",
         overflow: "hidden",
@@ -140,124 +137,84 @@ function BonsaiCard({ bonsai: b, idx }) {
         border: "1px solid rgba(200,181,96,0.15)",
         transition: "all 0.35s ease",
         animationDelay: `${idx * 0.05}s`,
+        minHeight: "400px"
       }}
     >
       {/* Imagen */}
       <div style={{ position: "relative", height: "220px", overflow: "hidden", background: "#e8e4d8" }}>
         <img
-          className="card-img"
-          src={b.image}
-          alt={b.name}
+          src={b.imagen || b.image || `https://via.placeholder.com/300x200/4a9e6b/ffffff?text=${encodeURIComponent(b.nombre || 'Bonsai')}`}
+          alt={b.nombre}
           style={{
             width: "100%",
             height: "100%",
             objectFit: "cover",
             transition: "transform 0.5s ease",
-            display: "block",
+            display: "block"
           }}
-          onError={e => {
+          onError={(e) => {
             e.target.style.display = "none";
-            e.target.parentElement.querySelector(".card-fallback").style.display = "flex";
           }}
         />
-        <div className="card-fallback" style={{ position: "absolute", inset: 0, display: "none", alignItems: "center", justifyContent: "center", fontSize: "64px" }}>🌳</div>
+      </div>
 
-        {/* Overlay hover */}
-        <div
-          className="card-overlay"
-          style={{
-            position: "absolute", inset: 0,
-            background: "rgba(26,46,26,0.55)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            opacity: 0,
-            transition: "opacity 0.3s ease",
-          }}
-        >
+      {/* Info del bonsái */}
+      <div style={{ padding: "20px", flex: 1, display: "flex", flexDirection: "column", gap: "10px" }}>
+        {/* Nombre */}
+        <h3 style={{
+          fontFamily: "Georgia, serif",
+          fontSize: "18px",
+          fontWeight: 400,
+          color: "#f0e8c8",
+          margin: "0 0 4px 0",
+          lineHeight: 1.3
+        }}>
+          {b.nombre || "Bonsái sin nombre"}
+        </h3>
+
+        {/* Edad y sustrato */}
+        <p style={{ 
+          fontSize: "12px", 
+          color: "rgba(200,181,96,0.6)", 
+          fontFamily: "sans-serif", 
+          margin: 0,
+          textTransform: "capitalize"
+        }}>
+          🌱 {b.edad || "?"} años · 🪴 {b.sustrato || "No disponible"}
+        </p>
+
+        {/* Descripción (si existe) */}
+        {b.descripcion && (
+          <p style={{
+            fontSize: "13px",
+            color: "rgba(255,255,255,0.7)",
+            fontFamily: "sans-serif",
+            lineHeight: 1.5,
+            margin: "10px 0 0 0"
+          }}>
+            {b.descripcion}
+          </p>
+        )}
+
+        {/* Botón Ver detalle */}
+        <div style={{ marginTop: "auto", paddingTop: "15px" }}>
           <span style={{
-            background: "#c8b560", color: "#1a2e1a",
-            fontSize: "12px", fontWeight: 600, letterSpacing: "2px",
-            textTransform: "uppercase", padding: "10px 22px",
-            borderRadius: "2px", fontFamily: "sans-serif",
+            background: "#c8b560",
+            color: "#1a2e1a",
+            fontSize: "12px",
+            fontWeight: 600,
+            letterSpacing: "2px",
+            textTransform: "uppercase",
+            padding: "10px 22px",
+            borderRadius: "2px",
+            fontFamily: "sans-serif",
+            display: "inline-block",
+            cursor: "pointer"
           }}>
             Ver detalle →
           </span>
         </div>
-
-        {/* Badge dificultad */}
-        <div style={{
-          position: "absolute", top: "12px", left: "12px",
-          background: "rgba(255,255,255,0.92)",
-          borderRadius: "20px", padding: "4px 12px",
-          fontSize: "11px", fontWeight: 500,
-          color: difficultyColor[b.dificultad] || "#555",
-          fontFamily: "sans-serif", letterSpacing: "0.5px",
-          backdropFilter: "blur(4px)",
-        }}>
-          ● {difficultyLabel[b.dificultad] || b.dificultad}
-        </div>
-
-        {/* Badge espacio */}
-        <div style={{
-          position: "absolute", top: "12px", right: "12px",
-          background: "rgba(26,46,26,0.75)",
-          borderRadius: "20px", padding: "4px 12px",
-          fontSize: "11px", color: "#c8b560",
-          fontFamily: "sans-serif", letterSpacing: "0.5px",
-          backdropFilter: "blur(4px)",
-        }}>
-          {b.espacio.includes("interior") && b.espacio.includes("exterior") ? "🏠🌳 Ambos" :
-           b.espacio.includes("interior") ? "🏠 Interior" : "🌳 Exterior"}
-        </div>
       </div>
-
-      {/* Info */}
-      <div style={{ padding: "20px 20px 18px", flex: 1, display: "flex", flexDirection: "column", gap: "10px", background: "rgba(255,255,255,0.03)" }}>
-        <div>
-          <h3 style={{
-            fontFamily: "Georgia, serif", fontSize: "18px", fontWeight: 400,
-            color: "#f0e8c8", margin: "0 0 4px", lineHeight: 1.3,
-          }}>
-            {b.name}
-          </h3>
-          <p style={{ fontSize: "12px", color: "rgba(200,181,96,0.6)", fontFamily: "sans-serif", margin: 0, textTransform: "capitalize" }}>
-            {b.age} · {b.elemento.join(" & ")}
-          </p>
-        </div>
-
-        <p style={{
-          fontSize: "13px", color: "rgba(240,232,200,0.55)", fontFamily: "sans-serif",
-          lineHeight: 1.6, margin: 0, flexGrow: 1,
-        }}>
-          {b.description}
-        </p>
-
-        {/* Tags propósito */}
-        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
-          {b.proposito.map(p => (
-            <span key={p} style={{
-              fontSize: "10px", padding: "3px 10px", borderRadius: "20px",
-              background: "rgba(200,181,96,0.1)", color: "#c8b560",
-              border: "1px solid rgba(200,181,96,0.25)", fontFamily: "sans-serif",
-              letterSpacing: "0.5px",
-            }}>
-              {p === "decoracion" ? "🎨 Decoración" : p === "meditacion" ? "🧘 Meditación" : "🏔️ Reto"}
-            </span>
-          ))}
-        </div>
-
-        {/* Precio */}
-        <div style={{
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          borderTop: "1px solid rgba(200,181,96,0.15)", paddingTop: "14px", marginTop: "4px",
-        }}>
-          <span style={{ fontFamily: "Georgia, serif", fontSize: "22px", color: "#c8b560", fontWeight: 400 }}>
-            ${b.price.toLocaleString()}
-          </span>
-          <span style={{ fontSize: "11px", color: "rgba(200,181,96,0.5)", fontFamily: "sans-serif", letterSpacing: "1.5px", textTransform: "uppercase" }}>
-            COP
-          </span>
-        </div>
-      </div>
-    </Link>
+    </div>
   );
 }
